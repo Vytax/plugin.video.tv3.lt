@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.tv3.lt"
+       name="TV3"
+       version="0.1" 
+       provider-name="Vytautas Mickus">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson" version="2.0.10"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">play.tv3.lt media player</summary>
+    <summary lang="lt">play.tv3.lt media grotuvas</summary>
+    <description lang="en">Watch content from play.tv3.lt</description>
+    <description lang="lt">Pamatyk play.tv3.lt video turinį ir tiesiogines transliacijas</description>
+    <platform>all</platform>
+    <language>lt</language>
+    <license>GPLv2</license>
+    <source>https://github.com/Vytax/plugin.video.tv3.lt</source>
+    <email>vmickus@gmail.com</email>
+  </extension>
+</addon>

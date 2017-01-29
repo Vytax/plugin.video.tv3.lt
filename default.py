@@ -93,7 +93,7 @@ def addVideo(video):
   if '_links' in video:
     links = video['_links']
       
-    if 'image' in links:	
+    if 'image' in links and links['image']['href']:	
       img = links['image']['href'].replace('{size}', '1280x720')
       listitem.setProperty('Fanart_Image', img)
       listitem.setThumbnailImage(img)
@@ -135,7 +135,17 @@ def listVideos(data):
   except:
     return
   
+  titles = {}
+  
   for video in data:
+    if video['title'] in titles:
+      titles[video['title']] = titles[video['title']] + 1
+    else:
+      titles[video['title']] = 1
+  
+  for video in data:
+    if titles[video['title']] > 1:
+      video['title'] = video['title'] + ' ' + video['publish_at'][0:10]
     addVideo(video)
   
   if page < total_pages:
@@ -267,7 +277,7 @@ def videos(params):
   if 'page' in params:
     page = '&page=' + params['page']
   
-  data = tv3.getJSON(url + page)
+  data = tv3.getJSON(url + '&limit=100&order=-visible_from' + page)
   listVideos(data)
 
 def latestClips(page):
@@ -286,7 +296,10 @@ def playVideo(params):
   
   title = urllib.unquote_plus(params['title'])
   url = urllib.unquote_plus(params['url'])
-  img = urllib.unquote_plus(params['img'])
+  if 'img' in params:
+    img = urllib.unquote_plus(params['img'])
+  else:
+    img = None
   
   data = tv3.getJSON(url)
   
@@ -301,7 +314,8 @@ def playVideo(params):
   
   listitem = xbmcgui.ListItem(label = title)
   listitem.setPath(streamURL)
-  listitem.setThumbnailImage(img)
+  if img:
+    listitem.setThumbnailImage(img)
   xbmcplugin.setResolvedUrl(handle = int(sys.argv[1]), succeeded = True, listitem = listitem)	
   
 def channels():

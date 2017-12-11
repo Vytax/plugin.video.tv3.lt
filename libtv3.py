@@ -15,10 +15,10 @@ import gzip
 reload(sys) 
 sys.setdefaultencoding('utf8')
 
-SECTIONS_URL = 'http://staging.playapi.mtgx.tv/v3/sections?channel=3000,6501,6502,6503,6504&sections=%s&device=mobile&premium=open&page=%d'
-CHANNELS_URL = 'http://staging.playapi.mtgx.tv/v3/formats?limit=500&channel=3000,6501,6502,6503,6504&device=mobile&premium=open'
-SEARCH_URL = 'http://staging.playapi.mtgx.tv/v3/search?term=%s&country=lt&device=mobile&premium=open&page=%d'
-FORMATVIDEOS_URL = 'http://staging.playapi.mtgx.tv/v3/videos?format=%s'
+SECTIONS_URL = 'http://playapi.mtgx.tv/v3/sections?channel=3000,6501,6502,6503,6504&sections=%s&device=mobile&premium=open&page=%d'
+CHANNELS_URL = 'http://playapi.mtgx.tv/v3/formats?limit=500&channel=3000,6501,6502,6503,6504&device=mobile&premium=open'
+SEARCH_URL = 'http://playapi.mtgx.tv/v3/search?term=%s&country=lt&device=mobile&premium=open&page=%d'
+FORMATVIDEOS_URL = 'http://playapi.mtgx.tv/v3/videos?format=%s'
 
 def getURL(url):
   
